@@ -8,6 +8,7 @@ import LeaderboardPage from '../Pages/LeaderboardPage.vue';
 import LoginPage from '../Pages/LoginPage.vue';
 import SignUpPage from '../Pages/SignUpPage.vue';
 import ProfilePage from '../Pages/ProfilePage.vue';
+import COTSPage from '../Pages/COTS.vue';
 
 const routes = [
     {
@@ -49,6 +50,11 @@ const routes = [
         path: '/profile',
         name: 'ProfilePage',
         component: ProfilePage,
+    },
+    {
+        path: '/COTS',
+        name: 'COTSPage',
+        component: COTSPage,
     }
 ]
 

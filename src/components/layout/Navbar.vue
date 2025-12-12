@@ -87,6 +87,7 @@ onBeforeUnmount(() => {
           <router-link to="/about" class="hover:text-indigo-500">
             About
           </router-link>
+          <router-link to="/COTS" class="hover:text-indigo-500">COTS</router-link>
 
           <!-- ICON PROFIL -->
           <div class="relative">
