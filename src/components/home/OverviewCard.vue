@@ -1,17 +1,30 @@
 <template>
-  <div class="bg-white rounded-2xl shadow p-6 flex flex-col items-center text-center">
-    <div v-if="icon" class="mb-3">
-      <img :src="icon" alt="" class="h-10 w-10 object-contain" />
+  <div
+    class="rounded-2xl border bg-gray-50 p-6
+           hover:shadow-lg hover:-translate-y-1
+           transition text-center"
+  >
+    <div
+      class="mx-auto mb-4 h-12 w-12 rounded-full
+             bg-indigo-100 flex items-center justify-center
+             text-indigo-600 font-bold"
+    >
+      ★
     </div>
-    <h3 class="font-semibold mb-2">{{ title }}</h3>
-    <p class="text-sm text-gray-600">{{ description }}</p>
+
+    <h3 class="text-lg font-semibold text-gray-900">
+      {{ title }}
+    </h3>
+
+    <p class="mt-2 text-sm text-gray-600">
+      {{ desc }}
+    </p>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  icon: String,
-  title: { type: String, default: '' },
-  description: { type: String, default: '' }
+defineProps({
+  title: String,
+  desc: String,
 })
 </script>

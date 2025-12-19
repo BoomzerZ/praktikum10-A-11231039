@@ -1,83 +1,109 @@
 <template>
-  <section class="bg-white py-16">
-    <div class="mx-auto max-w-5xl px-4 space-y-8">
+  <main class="pt-24 pb-20 bg-slate-50">
+    <!-- HERO ABOUT -->
+    <section class="max-w-6xl mx-auto px-4 text-center mb-20">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+        Belajar, Bertarung, Menjadi Juara
+      </h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        EdVenture Arena adalah platform kuis berbasis game di mana kamu
+        menguji pengetahuan dengan melawan monster, naik level,
+        dan membangun reputasi sebagai petualang sejati.
+      </p>
+    </section>
 
-      <!-- Blok 1: Penjelasan utama (blok besar paling atas) -->
-      <div class="bg-gray-100 rounded-2xl p-6 md:p-8 shadow-sm">
-        <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
-          Apa itu EdVenture Arena?
-        </h2>
-        <p class="text-sm md:text-base text-gray-700 leading-relaxed">
-          EdVenture Arena adalah platform kuis berbentuk game di mana kamu melawan musuh
-          dengan menjawab pertanyaan pilihan ganda. Setiap jawaban yang benar akan
-          mengurangi HP musuh, sementara jawaban yang salah dapat membuatmu kehilangan
-          kesempatan. Semakin tinggi level, semakin sulit soal dan semakin kuat musuh
-          yang dihadapi.
-        </p>
+    <!-- HOW IT WORKS -->
+    <section class="max-w-6xl mx-auto px-4 mb-20">
+      <h2 class="text-2xl font-bold text-center mb-10">
+        Cara Bermain di EdVenture
+      </h2>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="bg-white rounded-xl p-6 shadow text-center">
+          <div class="text-3xl mb-3">🧠</div>
+          <h3 class="font-semibold text-lg mb-2">Jawab Pertanyaan</h3>
+          <p class="text-slate-600 text-sm">
+            Pilih jawaban yang benar untuk menyerang musuh dan bertahan hidup.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow text-center">
+          <div class="text-3xl mb-3">⚔️</div>
+          <h3 class="font-semibold text-lg mb-2">Kalahkan Monster</h3>
+          <p class="text-slate-600 text-sm">
+            Setiap jawaban benar mengurangi HP monster. Salah? HP-mu berkurang.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow text-center">
+          <div class="text-3xl mb-3">🏆</div>
+          <h3 class="font-semibold text-lg mb-2">Naik Level</h3>
+          <p class="text-slate-600 text-sm">
+            Semakin tinggi level, semakin sulit soal dan semakin kuat musuhnya.
+          </p>
+        </div>
       </div>
+    </section>
 
-      <!-- Blok 2: Dua kolom tengah -->
+    <!-- WHY EDVENTURE -->
+    <section class="max-w-6xl mx-auto px-4 mb-20">
+      <h2 class="text-2xl font-bold text-center mb-10">
+        Kenapa EdVenture Arena?
+      </h2>
+
       <div class="grid gap-6 md:grid-cols-2">
-        <div class="bg-gray-100 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">
-            Belajar Sambil Bermain
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-lg mb-2">
+            🎮 Belajar Sambil Bermain
           </h3>
-          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
-            EdVenture dirancang agar proses belajar terasa seperti bermain game.
-            Kamu menjawab kuis, menaikkan level, membuka musuh baru, dan mengejar
-            skor tertinggi di leaderboard.
+          <p class="text-slate-600 text-sm">
+            Proses belajar dikemas seperti game petualangan.
+            Kamu tidak hanya menghafal, tapi juga berpikir strategis.
           </p>
         </div>
 
-        <div class="bg-gray-100 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">
-            Cocok untuk Berbagai Topik
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-lg mb-2">
+            🌍 Fleksibel & Beragam Topik
           </h3>
-          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
-            Topik kuis dapat disesuaikan, mulai dari pengetahuan umum, sains,
-            sejarah, hingga matematika. Platform ini bisa digunakan untuk latihan
-            pribadi, tugas kelas, atau kompetisi kuis sederhana.
+          <p class="text-slate-600 text-sm">
+            Kuis dapat disesuaikan untuk berbagai bidang:
+            pengetahuan umum, sains, sejarah, hingga matematika.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-lg mb-2">
+            🔥 Sistem Level & Reward
+          </h3>
+          <p class="text-slate-600 text-sm">
+            Sistem poin, level, dan koleksi monster
+            membuat pemain termotivasi untuk terus mencoba.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-lg mb-2">
+            📱 Responsif & Mudah Diakses
+          </h3>
+          <p class="text-slate-600 text-sm">
+            Dapat dimainkan di laptop maupun perangkat mobile
+            tanpa mengurangi kenyamanan bermain.
           </p>
         </div>
       </div>
+    </section>
 
-      <!-- Blok 3: Penjelasan tambahan (blok panjang) -->
-      <div class="bg-gray-100 rounded-2xl p-6 md:p-8 shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">
-          Kenapa EdVenture Menarik?
-        </h3>
-        <p class="text-sm md:text-base text-gray-700 leading-relaxed">
-          Sistem poin, reward, dan level membuat pengguna termotivasi untuk
-          terus mencoba lagi. Dengan tampilan sederhana dan responsif, EdVenture
-          mudah diakses di laptop maupun perangkat mobile sehingga cocok
-          digunakan sebagai media belajar harian.
-        </p>
-      </div>
-
-      <!-- Blok 4: Info singkat terakhir (blok paling bawah sebelum tombol) -->
-      <div class="bg-gray-100 rounded-2xl p-6 shadow-sm">
-        <p class="text-sm md:text-base text-gray-700 leading-relaxed">
-          EdVenture Arena dibangun menggunakan Vue.js dan Tailwind CSS sehingga
-          tampilan antarmuka tetap modern, ringan, dan mudah dikembangkan lebih
-          lanjut, misalnya dengan menambah kategori kuis, jenis musuh baru,
-          atau mode permainan lainnya.
-        </p>
-      </div>
-
-      <!-- Tombol Mulai Bermain di bawah, mirip desain figma -->
-      <div class="pt-6 flex justify-center">
-        <router-link
-          to="/game"
-          class="inline-flex items-center justify-center rounded-full
-                 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-400
-                 px-8 py-2 text-sm md:text-base font-semibold text-white
-                 shadow-md hover:shadow-lg hover:-translate-y-0.5
-                 transition-all duration-200"
-        >
-          Mulai Bermain
-        </router-link>
-      </div>
-
-    </div>
-  </section>
+    <!-- TECH & VISION -->
+    <section class="max-w-5xl mx-auto px-4 text-center">
+      <p class="text-slate-600 text-sm max-w-3xl mx-auto">
+        EdVenture Arena dibangun menggunakan
+        <span class="font-medium">Vue.js</span> dan
+        <span class="font-medium">Tailwind CSS</span>
+        untuk menghadirkan antarmuka modern, ringan,
+        dan mudah dikembangkan di masa depan dengan
+        fitur baru, mode permainan tambahan, dan variasi musuh.
+      </p>
+    </section>
+  </main>
 </template>

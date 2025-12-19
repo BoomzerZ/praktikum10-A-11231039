@@ -1,25 +1,28 @@
 <template>
-  <section class="py-20">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900">
+        Cara Bermain
+      </h2>
 
-      <OverviewCard
-        icon="/src/assets/icons/Quiz.png"
-        title="Asah Pengetahuan"
-        description="Jawab pertanyaan untuk menyerang musuh."
-      />
+      <p class="mt-3 text-gray-600 max-w-2xl mx-auto">
+        Jawab soal, serang musuh, dan kumpulkan monster.
+      </p>
 
-      <OverviewCard
-        icon="/src/assets/icons/Serang.png"
-        title="Bunuh Monster"
-        description="Kalahkan musuh untuk membuka monster baru."
-      />
-
-      <OverviewCard
-        icon="/src/assets/icons/Koleksi.png"
-        title="Kumpulkan Koleksi"
-        description="Monster yang dikalahkan akan masuk ke Gallery."
-      />
-
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        <OverviewCard
+          title="Jawab Kuis"
+          desc="Pilih jawaban yang benar untuk menyerang musuh."
+        />
+        <OverviewCard
+          title="Kalahkan Monster"
+          desc="3 jawaban benar akan mengalahkan musuh."
+        />
+        <OverviewCard
+          title="Koleksi & Ranking"
+          desc="Monster yang dikalahkan masuk ke galeri."
+        />
+      </div>
     </div>
   </section>
 </template>

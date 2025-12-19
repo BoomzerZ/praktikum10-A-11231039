@@ -1,38 +1,22 @@
 <template>
-  <section class="gallery-page p-6">
-    <header class="mb-6 flex items-center justify-between">
-      <h1 class="text-2xl font-bold">Gallery</h1>
-      <div class="controls flex items-center gap-3">
-        <input v-model="q" placeholder="Search..." class="px-3 py-1 border rounded" />
-        <select v-model.number="perPage" class="px-2 py-1 border rounded">
-          <option :value="6">6</option>
-          <option :value="12">12</option>
-          <option :value="24">24</option>
-        </select>
-      </div>
-    </header>
+  <section class="p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4">Unlockable</h2>
+    <div class="mb-6 text-sm text-slate-500">Progress: {{ unlockedCount }} / {{ monsters.length }} unlocked</div>
 
-    <!-- grid -->
-    <div class="grid gap-4"
-         :style="{ gridTemplateColumns: gridColumns }">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       <MonsterCard
-        v-for="m in paged"
+        v-for="m in pageItems"
         :key="m.id"
         :monster="m"
-        @select="openMonster"
+        @open="openMonster"
       />
     </div>
 
-    <div class="mt-6 flex items-center justify-between">
-      <div class="text-sm text-gray-500">Showing {{ startIndex + 1 }} - {{ Math.min(endIndex, filtered.length) }} of {{ filtered.length }}</div>
-      <Pagination :total="filtered.length" :per-page="perPage" :current="currentPage" @change="onPageChange" />
+    <div class="mt-8 flex items-center justify-center">
+      <Pagination :current="currentPage" :total="totalPages" :maxVisible="5" @change="goPage" />
     </div>
 
-    <MonsterModal :monster="selectedMonster" @close="closeMonster">
-      <template #actions>
-        <button class="px-3 py-1 rounded bg-blue-600 text-white" @click="favorite(selectedMonster)">Favorite</button>
-      </template>
-    </MonsterModal>
+    <MonsterModal v-if="open" :monster="selected" @close="open = false" />
   </section>
 </template>
 
@@ -41,60 +25,73 @@ import { ref, computed } from 'vue'
 import MonsterCard from '../components/gallery/MonsterCard.vue'
 import MonsterModal from '../components/gallery/MonsterModal.vue'
 import Pagination from '../components/gallery/Pagination.vue'
+import { getUnlocked } from '../utils/galleryHelper.js'
 
-// sample data — ganti dengan fetch / store sesuai arsitektur
-const monsters = ref([
-  { id:1, name:'Drake', image:'/images/drake.jpg', short:'Fire dragon', description:'Large fire dragon', type:'Fire' },
-  /* ... lebih banyak objek ... */
-])
+// static monster list (example) - you can move this to separate JSON
+const monsters = [
+  // provide ids 1..N, images optional
+  { 
+  id: 1, 
+  name: 'Slime', 
+  hearts: 3, 
+  bio: 'Makhluk paling dasar di dunia EdVenture. Slime tercipta dari residu energi sihir yang terkumpul terlalu lama di satu tempat. Meski terlihat lemah dan lamban, Slime sering menjadi ujian pertama bagi para petualang pemula untuk mengasah insting dan ketelitian mereka. Jangan meremehkannya! kesalahan kecil bisa tetap berakibat fatal.',
+  image: '/src/assets/monsters/Slime.png', 
+  isBoss: false 
+  },
 
-const q = ref('')
+  { 
+  id: 2, 
+  name: 'Goblin', 
+  hearts: 3, 
+  bio: 'Goblin adalah makhluk licik yang hidup berkelompok di hutan dan gua gelap. Mereka tidak kuat secara fisik, tetapi unggul dalam tipu daya dan serangan mendadak. Banyak petualang tumbang bukan karena kekuatan Goblin, melainkan karena meremehkan kecerdasannya.', 
+  image: '/src/assets/monsters/Goblin.png', 
+  isBoss: false 
+  },
+
+  { 
+  id: 3, 
+  name: 'Orc', 
+  hearts: 4, 
+  bio: 'Orc dikenal sebagai prajurit brutal dengan kekuatan dan daya tahan tinggi. Mereka hidup untuk pertempuran dan menghormati kekuatan di atas segalanya. Menghadapi Orc bukan hanya soal pengetahuan, tetapi juga konsistensi.. satu kesalahan bisa membuat pertarungan berakhir lebih cepat dari yang diduga.', 
+  image: '/src/assets/monsters/Orc.png', 
+  isBoss: false 
+  },
+  // ... up to whatever
+  { 
+  id: 10, 
+  name: 'Dragon', 
+  hearts: 6, 
+  bio: 'Makhluk legendaris yang telah hidup selama ribuan tahun. Ancient Dragon bukan sekadar monster, melainkan simbol puncak tantangan di dunia EdVenture. Ia menguasai pengetahuan kuno, kekuatan penghancur, dan kecerdasan luar biasa. Hanya petualang terbaik yang mampu mengalahkannya dan membuktikan diri layak menjadi legenda.', 
+  image: '/src/assets/monsters/Ancient_dragon.png', 
+  isBoss: true 
+  },
+  // add more to reach many pages...
+]
+
+const perPage = 15
 const currentPage = ref(1)
-const perPage = ref(12)
+const open = ref(false)
+const selected = ref(null)
 
-const filtered = computed(() => {
-  if (!q.value) return monsters.value
-  return monsters.value.filter(m => m.name.toLowerCase().includes(q.value.toLowerCase()))
+const totalPages = computed(() => Math.max(1, Math.ceil(monsters.length / perPage)))
+const unlockedIds = computed(() => getUnlocked())
+const unlockedCount = computed(() => unlockedIds.value.length)
+
+const pageItems = computed(() => {
+  const start = (currentPage.value - 1) * perPage
+  return monsters.slice(start, start + perPage)
 })
 
-const total = computed(() => filtered.value.length)
-const totalPages = computed(() => Math.max(1, Math.ceil(total.value / perPage.value)))
-
-const startIndex = computed(() => (currentPage.value - 1) * perPage.value)
-const endIndex = computed(() => startIndex.value + perPage.value)
-const paged = computed(() => filtered.value.slice(startIndex.value, endIndex.value))
-
-const gridColumns = computed(() => {
-  // responsive: smaller screens fewer columns; use CSS or Tailwind in production
-  // simple formula: fixed col count
-  return perPage.value >= 12 ? 'repeat(4, minmax(0,1fr))' : 'repeat(3, minmax(0,1fr))'
-})
-
-const selectedMonster = ref(null)
+function goPage(n) {
+  currentPage.value = n
+}
 
 function openMonster(monster) {
-  selectedMonster.value = monster
-}
-
-function closeMonster() {
-  selectedMonster.value = null
-}
-
-function onPageChange(page) {
-  currentPage.value = page
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-// optional action
-function favorite(monster) {
-  console.log('favorite', monster)
+  selected.value = monster
+  open.value = true
 }
 </script>
 
 <style scoped>
-.gallery-page .grid { margin-bottom: 12px; }
-/* Use media queries or utility classes for responsive columns in real project */
-@media (max-width: 768px) {
-  .gallery-page .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-}
+/* small layout tweaks if needed */
 </style>
